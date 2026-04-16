@@ -20,7 +20,6 @@
         padding: 0;
       }
 
-      /* ===== HEADER ===== */
       .header {
         background: linear-gradient(135deg, #007bff, #00d4ff);
         color: white;
@@ -47,7 +46,6 @@
         border-radius: 8px;
       }
 
-      /* ===== SECTIONS ===== */
       .section {
         max-width: 600px;
         margin: 30px auto;
@@ -63,7 +61,6 @@
         margin-top: 0;
       }
 
-      /* ===== UPLOAD AREA ===== */
       .upload-demo { text-align: center; }
       #imageUpload { display: none; }
 
@@ -81,7 +78,6 @@
         transition: background-color 0.2s, transform 0.1s;
       }
       .upload-btn:hover { background-color: #0056b3; transform: translateY(-1px); }
-      .upload-btn:active { transform: translateY(0); }
 
       #previewImage {
         max-width: 100%;
@@ -92,7 +88,6 @@
         display: none;
       }
 
-      /* ===== ANALYZE BUTTON ===== */
       #analyzeBtn {
         display: none;
         margin: 16px auto 0;
@@ -110,7 +105,6 @@
       #analyzeBtn:hover:not(:disabled) { background-color: #1e7e34; transform: translateY(-1px); }
       #analyzeBtn:disabled { opacity: 0.6; cursor: not-allowed; }
 
-      /* ===== LOADING ===== */
       #loading {
         display: none;
         margin-top: 20px;
@@ -129,7 +123,6 @@
       }
       @keyframes spin { to { transform: rotate(360deg); } }
 
-      /* ===== RESULT BOX ===== */
       .result-box {
         margin-top: 20px;
         padding: 18px;
@@ -168,7 +161,6 @@
         padding-top: 8px;
       }
 
-      /* ===== PROMO ===== */
       .promo {
         max-width: 600px;
         margin: 0 auto 10px;
@@ -181,7 +173,6 @@
         border: 1px solid #e0a8d5;
       }
 
-      /* ===== FOOTER ===== */
       .footer {
         text-align: center;
         color: #95a5a6;
@@ -189,7 +180,6 @@
         margin: 30px 0 20px;
       }
 
-      /* ===== NOTE ===== */
       .note {
         color: #7f8c8d;
         font-size: 13px;
@@ -199,19 +189,17 @@
   </head>
 
   <body>
-    <!-- HEADER -->
     <div class="header">
       <div class="mascot-logos">
-        <img src="mascot.png"      alt="น้องโงก-งาก" class="mascot" />
+        <img src="mascot.png"       alt="น้องโงก-งาก" class="mascot" />
         <img src="it_logo_2020.jpg" alt="IT Logo"      class="logo"   />
-        <img src="pingtaknon.png"  alt="ปิ้งผีตาโขน"  class="mascot" />
+        <img src="pingtaknon.png"   alt="ปิ้งผีตาโขน"  class="mascot" />
       </div>
       <h1>'น้องโงก-งาก' AI แยกเห็ดพิษ!</h1>
       <p>ผลงานรางวัล Recognition Award, การประกวดนวัตกรรมดิจิทัล Coding Thailand 2025</p>
       <img src="IMG_0603.jpg" alt="Award Photo" class="award-photo" />
     </div>
 
-    <!-- ABOUT -->
     <div class="section">
       <h2>เกี่ยวกับ 'น้องโงก-งาก' AI</h2>
       <p>
@@ -221,96 +209,75 @@
       </p>
     </div>
 
-    <!-- DEMO -->
     <div class="section upload-demo">
       <h2>ลองเล่น: อัพรูปเห็ดของคุณ!</h2>
       <p class="note">AI จะวิเคราะห์รูปภาพเห็ดที่คุณอัปโหลดและแจ้งผลแบบ Real-time ครับ</p>
 
-      <!-- Upload trigger -->
       <label for="imageUpload" class="upload-btn">➕ อัพรูปเห็ดที่นี่</label>
       <input type="file" id="imageUpload" accept="image/*" onchange="handleUpload(event)" />
 
-      <!-- Preview -->
       <img id="previewImage" alt="Image Preview" />
 
-      <!-- Analyze button — shown after image selected -->
       <button id="analyzeBtn" onclick="startAnalysis()">🔍 วิเคราะห์เห็ด</button>
 
-      <!-- Loading spinner -->
       <div id="loading">
         <div class="spinner"></div>
         กำลังวิเคราะห์ด้วย AI...
       </div>
 
-      <!-- Result -->
       <div id="result" class="result-box"></div>
     </div>
 
-    <!-- TEAM -->
     <div class="section">
       <h2>ทีมผู้พัฒนา (Creators)</h2>
       <img src="team-photo.png" alt="Team Photo"
            style="width: 100%; border-radius: 8px; border: 1px solid #ddd;" />
     </div>
 
-    <!-- PROMO -->
     <div class="promo">
       รับสมัคร ปวช./ปวส. ในแผนกวิชา IT &amp; AI วิทยาลัยเทคนิคเลย<br />ที่นี่เรียนจริง ทำจริง มีผลงาน!
     </div>
 
-    <!-- FOOTER -->
     <div class="footer">
       &copy; 2026 แผนกวิชาเทคโนโลยีสารสนเทศและเทคโนโลยีปัญญาประดิษฐ์ วิทยาลัยเทคนิคเลย
     </div>
 
-    <!-- ================================================================
-         SCRIPT
-         ⚠️  ใส่ Gemini API Key ด้านล่างนี้
-         ⚠️  อย่า commit ไฟล์นี้ขึ้น GitHub หรือเผยแพร่สาธารณะ
-              เพราะ key จะถูกเปิดเผย ควรใช้ backend/proxy แทนใน production
-    ================================================================ -->
     <script>
-      const API_URL = `https://ngok-ngak-demo.pichaya-promla.workers.dev`;
+      // ✅ ชี้ไปที่ Cloudflare Worker — ไม่มี API Key ใน client แล้ว
+      const API_URL = "https://ngok-ngakdemo.pichaya-promla.workers.dev";
+
       let base64Image = "";
       let imageMimeType = "image/jpeg";
 
-      // ── 1. รับรูปและแสดง preview ──────────────────────────────────
       function handleUpload(event) {
         const file = event.target.files[0];
         if (!file) return;
 
-        // จดจำ mime type จริงของไฟล์ (jpeg / png / webp / ฯลฯ)
         imageMimeType = file.type || "image/jpeg";
 
         const reader = new FileReader();
         reader.onload = function (e) {
-          // แสดง preview
           const preview = document.getElementById("previewImage");
           preview.src = e.target.result;
           preview.style.display = "block";
 
-          // แสดงปุ่มวิเคราะห์
           document.getElementById("analyzeBtn").style.display = "inline-block";
 
-          // เคลียร์ผลเดิม
           const resultDiv = document.getElementById("result");
           resultDiv.style.display = "none";
           resultDiv.className = "result-box";
 
-          // เก็บ base64 (ตัด data URL prefix ทิ้ง)
           base64Image = e.target.result.split(",")[1];
         };
         reader.readAsDataURL(file);
       }
 
-      // ── 2. ส่งรูปให้ Gemini วิเคราะห์ ────────────────────────────
       async function startAnalysis() {
         if (!base64Image) {
           alert("กรุณาอัปโหลดรูปภาพก่อนครับ!");
           return;
         }
 
-        // แสดง loading, ซ่อน result
         const analyzeBtn = document.getElementById("analyzeBtn");
         const loading    = document.getElementById("loading");
         const resultDiv  = document.getElementById("result");
@@ -322,14 +289,12 @@
         const promptText = `
 คุณคือผู้เชี่ยวชาญด้านเห็ดป่าในประเทศไทย
 วิเคราะห์ภาพเห็ดนี้ว่าเป็นเห็ดพิษหรือไม่
-
 ตอบกลับเป็น JSON เท่านั้น ไม่ต้องมีข้อความอื่น ไม่ต้องมี markdown:
 {
   "status": "danger" หรือ "safe" หรือ "unsure",
   "confidence": ตัวเลข 0-100,
   "reason": "อธิบายเหตุผลสั้นๆ เป็นภาษาไทย 1-2 ประโยค"
-}
-        `.trim();
+}`.trim();
 
         const requestBody = {
           contents: [{
@@ -354,8 +319,6 @@
 
           const data = await response.json();
           let aiText = data.candidates?.[0]?.content?.parts?.[0]?.text || "";
-
-          // ตัด markdown fence ทิ้งถ้ามี
           aiText = aiText.replace(/```json|```/g, "").trim();
 
           const aiResult = JSON.parse(aiText);
@@ -363,22 +326,21 @@
 
         } catch (error) {
           console.error("API Error:", error);
-          resultDiv.className   = "result-box unsure";
+          resultDiv.className = "result-box unsure";
           resultDiv.style.display = "block";
-          resultDiv.innerHTML   = `❌ เกิดข้อผิดพลาด<div class="result-reason">${error.message}</div>`;
+          resultDiv.innerHTML = `❌ เกิดข้อผิดพลาด<div class="result-reason">${error.message}</div>`;
         } finally {
           loading.style.display = "none";
-          analyzeBtn.disabled   = false;
+          analyzeBtn.disabled = false;
         }
       }
 
-      // ── 3. แสดงผลลัพธ์ ────────────────────────────────────────────
       function showResult(aiResult) {
         const resultDiv = document.getElementById("result");
         resultDiv.style.display = "block";
 
         const confidence = aiResult.confidence ?? "?";
-        const reason     = aiResult.reason     ?? "";
+        const reason     = aiResult.reason ?? "";
         const disclaimer = `<div class="disclaimer">⚠️ ผลนี้เป็นเพียงการประมาณการจาก AI เท่านั้น ไม่ควรใช้เป็นเกณฑ์ตัดสินใจรับประทาน</div>`;
 
         if (aiResult.status === "safe") {
@@ -387,24 +349,21 @@
             ✅ เห็ดทั่วไป (Edible)
             <div class="result-confidence">ความมั่นใจ: ${confidence}%</div>
             <div class="result-reason">${reason}</div>
-            ${disclaimer}
-          `;
+            ${disclaimer}`;
         } else if (aiResult.status === "danger") {
           resultDiv.className = "result-box danger";
           resultDiv.innerHTML = `
             ⚠️ เห็ดพิษ (Poisonous)
             <div class="result-confidence">ความมั่นใจ: ${confidence}%</div>
             <div class="result-reason">${reason}</div>
-            ${disclaimer}
-          `;
+            ${disclaimer}`;
         } else {
           resultDiv.className = "result-box unsure";
           resultDiv.innerHTML = `
             ❓ ไม่แน่ใจ (Unsure)
             <div class="result-confidence">ความมั่นใจ: ${confidence}%</div>
             <div class="result-reason">${reason}</div>
-            ${disclaimer}
-          `;
+            ${disclaimer}`;
         }
       }
     </script>
